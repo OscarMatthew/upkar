@@ -1,8 +1,13 @@
 <?php
 
-$app->get('/[{page}]', function($request, $response, $args) {
-    if (!isset($args['page'])) $page = 'home';
-    else $page = $args['page'];
+$app->get('/', function($request, $response, $args) {
+    return $this->view->render($response, 'home.html.twig');
+});
 
-    return $this->view->render($response, $page.'.html.twig');
+$app->get('/contact', function($request, $response, $args) {
+    return $this->view->render($response, 'contact.html.twig');
+});
+
+$app->get('/{notfound}', function($request, $response, $args) {
+    return 'This page does not exist.';
 });
